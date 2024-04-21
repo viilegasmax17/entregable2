@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>McDonalds</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link href="https://fonts.cdnfonts.com/css/forque" rel="stylesheet">
+    <style>
+        /* Tus estilos CSS existentes */
+        #macnav .nav-item {
+            display: flex;
+            align-items: center;
+        }
+
+        #carousel-container {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        /* Animación de flote para el modal */
+        .comidaModalFloat .modal-content {
+            animation: modalFloatAnimation 3s infinite alternate;
+        }
+
+       #searchInput {
+        
+        width: 60%;
+        border-radius: 25px;
+    }
+
+    /* Estilos para el contenedor de resultados de búsqueda */
+#resultsContainer {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+    width: calc(60% - 20px);
+    padding: 10px;
+    display: none;
+    margin-top: 40px;
+    left: 20%;
+    z-index: 999;
+    box-shadow: 0 0 10px rgba(255, 255, 255);
+    background-color: white; /* Agrega este estilo para hacer el fondo blanco */
+}
+
+
+    /* Estilos para los resultados de búsqueda */
+    #resultsContainer {
+    
+    z-index: 999;
+}
+    .resultItem:hover {
+        background-color: #f0f0f0;
+    }
+        @keyframes modalFloatAnimation {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        /* Estilos para las imágenes del carrusel */
+        #demo .carousel-item img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Animación para las imágenes y texto */
+        #comida .img-fluid {
+            border-radius: 15px;
+            max-width: 100%;
+            height: auto;
+            animation: floatAnimation 3s infinite alternate;
+        }
+
+        #comida p, #comida h3 {
+            animation: floatAnimation 3s infinite alternate;
+        }
+
+        /* Estilos para la iluminación al pasar el cursor */
+        .comisi:hover {
+            transform: scale(1.1); /* Escala en un 10% */
+            transition: transform 0.5s ease; /* Transición suave */
+        }
+
+        @keyframes floatAnimation {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="particles-js"></div>
+
+    <!-- Barra de navegación -->
+    <nav id="macnav" class="navbar navbar-expand-md bg-warning navbar-dark">
+        <img src="im/mc.webp" width="35px">
+        <input type="text" id="searchInput" style="margin-left:20px;" placeholder="Buscar..." class="form-control mr-sm-2">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#contactModal" style="margin-left: 30px;">Contáctanos</a>
+                </li>
+                
+            </ul>
+        </div>
+            <!-- Barra de búsqueda en tiempo real -->
+            
+
+    </nav>
+
+    <div id="resultsContainer" class="position-absolute"></div> 
+
+
+    <!-- Contenedor del carrusel -->
+    <div id="carousel-container">
+        <div id="demo" class="carousel slide" data-ride="carousel">
+            <!-- Indicadores -->
+            <ul class="carousel-indicators">
+                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                <li data-target="#demo" data-slide-to="1"></li>
+                <li data-target="#demo" data-slide-to="2"></li>
+            </ul>
+
+            <!-- Presentación de diapositivas -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="im/mac1.webp" alt="Los Angeles">
+                </div>
+                <div class="carousel-item">
+                    <img src="im/mac2.webp" alt="Chicago">
+                </div>
+                <div class="carousel-item">
+                    <img src="im/mac3.webp" alt="New York">
+                </div>
+            </div>
+
+            <!-- Controles izquierda y derecha -->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Contenedor de la comida -->
+    <div class="container" id="comida" style="margin-top: 50px;">
+        <h3 class=" mb-4">Menú</h3>
+        <div class="row justify-content-center">
+            <div class="col-md-2 text-center comisi" onclick="openModal('im/big.webp', 'BigMac', 'S/10.00')">
+                <img src="im/big.webp" class="img-fluid" alt="BigMac">
+                <p>BigMac</p>
+                <p>S/10.00</p>
+            </div>
+            <div class="col-md-2 text-center comisi" onclick="openModal('im/cu.webp', 'Cuarto de Libra con queso', 'S/12.00')">
+                <img src="im/cu.webp" class="img-fluid" alt="Cuarto de Libra con queso">
+                <p>Cuarto de Libra con queso</p>
+                <p>S/12.00</p>
+            </div>
+            <div class="col-md-2 text-center comisi" onclick="openModal('im/tri.webp', 'Sándwich Grand Triple McBacon', 'S/18.00')">
+                <img src="im/tri.webp" class="img-fluid" alt="Sándwich Grand Triple McBacon">
+                <p>Sándwich Grand Triple McBacon</p>
+                <p>S/18.00</p>
+            </div>
+            <div class="col-md-2 text-center comisi" onclick="openModal('im/pa.webp', 'Papas Grandes', 'S/6.00')">
+                <img src="im/pa.webp" class="img-fluid" alt="Papas Grandes">
+                <p>Papas Grandes</p>
+                <p>S/6.00</p>
+            </div>
+            <div class="col-md-2 text-center comisi" onclick="openModal('im/sun.webp', 'Sundae Chocolate', 'S/4.00')">
+                <img src="im/sun.webp" class="img-fluid" alt="Sundae Chocolate">
+                <p>Sundae Chocolate</p>
+                <p>S/4.00</p>
+            </div>
+            <div class="col-md-2 text-center comisi" onclick="openModal('im/flur.webp', 'McFlurry Oreo', 'S/8.00')">
+                <img src="im/flur.webp" class="img-fluid" alt="McFlurry Oreo">
+                <p>McFlurry Oreo</p>
+                <p>S/8.00</p>
+            </div>
+        </div>
+        <div class="row justify-content-center" style="margin-top:50px;">
+            <div class="col-md-2 text-center comisi" onclick="openModal('im/poll.webp', 'Pieza de pollo', 'S/3.00')">
+                <img src="im/poll.webp" class="img-fluid" alt="Pieza de pollo">
+                <p>Pieza de pollo</p>
+                <p>S/3.00</p>
+            </div>
+            <div class="col-md-2 text-center comisi" onclick="openModal('im/coc.webp', 'Coca-Cola 12oz', 'S/3.00')">
+                <img src="im/coc.webp" class="img-fluid" alt="Coca-Cola 12oz">
+                <p>Coca-Cola 12oz</p>
+                <p>S/3.00</p>
+            </div>
+            <div class="col-md-2 text-center comisi" onclick="openModal('im/mym.webp', 'McFlurry M&M', 'S/9.00')">
+                <img src="im/mym.webp" class="img-fluid" alt="McFlurry M&M">
+                <p>McFlurry M&M</p>
+                <p>S/9.00</p>
+            </div>
+            <div class="col-md-2 text-center comisi" onclick="openModal('im/fre.webp', 'Sundae Fresa', 'S/4.00')">
+                <img src="im/fre.webp" class="img-fluid" alt="Sundae Fresa">
+                <p>Sundae Fresa</p>
+                <p>S/4.00</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contactModalLabel">Contacto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nombre:</label>
+                        <input type="text" class="form-control" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensaje:</label>
+                        <textarea class="form-control" id="message" rows="3" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="sendMessage()">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Modal para la comida -->
+    <div class="modal fade comidaModalFloat" id="comidaModal" tabindex="-1" role="dialog" aria-labelledby="comidaModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="comidaModalLabel">Detalles de la comida</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img id="modalImage" src="" class="img-fluid" alt="Comida">
+                    <p id="modalDescription"></p>
+                    <p>Precio: <span id="modalPrice"></span></p>
+                    <label for="portion">Porciones:</label>
+                    <input type="number" id="portion" min="1" value="1">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-warning" onclick="addToCart()">Agregar al carrito</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    // Datos del menú
+    const menu = [
+        { name: "BigMac", image: "im/big.webp", price: "S/10.00" },
+        { name: "Cuarto de Libra con queso", image: "im/cu.webp", price: "S/12.00" },
+        { name: "Sándwich Grand Triple McBacon", image: "im/tri.webp", price: "S/18.00" },
+        { name: "Papas Grandes", image: "im/pa.webp", price: "S/6.00" },
+        { name: "Sundae Chocolate", image: "im/sun.webp", price: "S/4.00" },
+        { name: "McFlurry Oreo", image: "im/flur.webp", price: "S/8.00" },
+        { name: "Pieza de pollo", image: "im/poll.webp", price: "S/3.00" },
+        { name: "Coca-Cola 12oz", image: "im/coc.webp", price: "S/3.00" },
+        { name: "McFlurry M&M", image: "im/mym.webp", price: "S/9.00" },
+        { name: "Sundae Fresa", image: "im/fre.webp", price: "S/4.00" }
+    ];
+
+    // Barra de búsqueda en tiempo real
+    const searchInput = document.getElementById('searchInput');
+    const resultsContainer = document.getElementById('resultsContainer');
+
+    function updateResults(query) {
+    resultsContainer.innerHTML = '';
+    
+    // Verificar si el texto de búsqueda está vacío
+    if (query.trim() === '') {
+        resultsContainer.style.display = 'none'; // Ocultar el contenedor si el texto está vacío
+        return; // Salir de la función
+    }
+
+    const filteredResults = menu.filter(item => item.name.toLowerCase().includes(query.toLowerCase()));
+
+    if (filteredResults.length > 0) {
+        filteredResults.forEach(item => {
+            const resultItem = document.createElement('div');
+            resultItem.classList.add('resultItem');
+            resultItem.textContent = item.name;
+            resultItem.onclick = function() {
+                openModal(item.image, item.name, item.price);
+            };
+            resultsContainer.appendChild(resultItem);
+        });
+        resultsContainer.style.display = 'block'; // Mostrar los resultados
+    } else {
+        resultsContainer.style.display = 'none'; // Ocultar el contenedor si no hay resultados
+    }
+}
+
+    searchInput.addEventListener('input', function() {
+        updateResults(this.value);
+    });
+
+    // Función para abrir el modal con los detalles de la comida
+    function openModal(image, description, price) {
+        $('#comidaModal').modal('show');
+        document.getElementById('modalImage').src = image;
+        document.getElementById('modalDescription').textContent = description;
+        document.getElementById('modalPrice').textContent = price;
+    }
+    function calculateTotalPrice() {
+    const portion = parseInt(document.getElementById('portion').value);
+    const pricePerPortion = parseFloat(document.getElementById('modalPrice').textContent.replace('S/', '').trim());
+    const totalPrice = portion * pricePerPortion;
+    document.getElementById('totalPrice').textContent = 'S/' + totalPrice.toFixed(2);
+}
+
+    // Función para agregar al carrito
+    function addToCart() {
+            var portion = parseInt(document.getElementById('portion').value);
+            var price = parseFloat(document.getElementById('modalPrice').innerText.replace('S/', ''));
+            var totalPrice = price * portion;
+            alert('Se han agregado ' + portion + ' porciones al carrito. Total: S/' + totalPrice.toFixed(2));
+            $('#comidaModal').modal('hide');
+        }
+</script>
+
+     <div class="jumbotron jumbotron-fluid  text-white"  style="margin-top: 100px; background-color: rgba(255, 203, 28, 0.9);">
+    <div class="container " >
+        <p> Arcos Dorados solo recolecta información de identificación únicamente cuando estos datos son proporcionados voluntariamente por las personas que visitan nuestro Sitio Web o acceden a nuestra Red Wi-Fi. Esta información es utilizada exclusivamente por Arcos Dorados, previo consentimiento de su titular, para validaciones, mejoras de la página, dar respuesta a los mensajes recibidos, mejorar su experiencia y envíos de comunicaciones promocionales y comerciales. La información no es vendida ni transferida a terceros.
+
+Arcos Dorados solo podrá proporcionar cualquier información cuando ésta sea requerida por autoridad competente o conlleve el cumplimiento de una regulación o requerimiento legal, para proteger la integridad de su Sitio Web y Red Wi-fi o colaborar con asuntos que correspondan a la seguridad pública.</p>
+    </div>
+</div>
+
+<script>
+    // Función para enviar el mensaje al número de WhatsApp
+    function sendMessage() {
+        var name = document.getElementById('name').value;
+        var message = document.getElementById('message').value;
+        var whatsappNumber = '+51968721326'; // Cambia este número al número de WhatsApp deseado
+
+        var url = 'https://api.whatsapp.com/send?phone=' + encodeURIComponent(whatsappNumber) + '&text=' + encodeURIComponent('Nombre: ' + name + '\nMensaje: ' + message);
+        window.open(url, '_blank');
+    }
+</script>
+
+</script>
+</body>
+</html>
